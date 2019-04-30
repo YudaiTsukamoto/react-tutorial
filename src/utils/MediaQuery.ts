@@ -1,4 +1,4 @@
-import facepaint from 'facepaint'
+import facepaint from 'facepaint';
 
 const breakpoints = [576, 768, 992, 1200];
 

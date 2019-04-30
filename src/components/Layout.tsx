@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import {jsx} from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import {Colors} from "../constants/styles";
+import { Colors } from '../constants/styles';
 import mq from '../utils/MediaQuery';
 
 // =====
@@ -12,13 +12,24 @@ import mq from '../utils/MediaQuery';
 const Layout: React.FC = props => (
   <div>
     <Header>
-      <Link to="/"><Logo>React Tutorial</Logo></Link>
+      <Link to="/">
+        <Logo>React Tutorial</Logo>
+      </Link>
       <Menu>
         <MenuItem>
-          <Link to="/"><MenuLink>Home</MenuLink></Link>
+          <Link to="/">
+            <MenuLink>Home</MenuLink>
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/help"><MenuLink>Help</MenuLink></Link>
+          <Link to="/help">
+            <MenuLink>Help</MenuLink>
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/signup">
+            <MenuLink>Signup</MenuLink>
+          </Link>
         </MenuItem>
       </Menu>
     </Header>
@@ -31,29 +42,29 @@ const Layout: React.FC = props => (
 // @Styled
 
 const Header = styled.header({
-  alignItem: "center",
+  alignItem: 'center',
   background: Colors.turquoiseBlue,
-  display: "flex",
+  display: 'flex',
   height: 64,
-  padding: "0 24px"
+  padding: '0 24px',
 });
 
 const Logo = styled.div({
-  alignItems: "center",
+  alignItems: 'center',
   color: Colors.white,
-  display: "flex",
+  display: 'flex',
   fontSize: 24,
   fontWight: 700,
   height: '100%',
   justifyContent: 'center',
-  marginRight: 20
+  marginRight: 20,
 });
 
 const Content = styled.main(
   mq({
-    margin: "0 auto",
+    margin: '0 auto',
     paddingLeft: [24, 80],
-    paddingRight: [24, 80]
+    paddingRight: [24, 80],
   })
 );
 
@@ -61,18 +72,18 @@ const Footer = styled.footer(
   mq({
     background: Colors.paleGray,
     color: Colors.gray,
-    margin: "0 auto",
+    margin: '0 auto',
     paddingBottom: [24, 40],
     paddingLeft: [24, 80],
     paddingRight: [24, 80],
     paddingTop: [24, 40],
-    textAlign: "center"
+    textAlign: 'center',
   })
 );
 
 const Menu = styled.div({
   alignItems: 'center',
-  display: 'flex'
+  display: 'flex',
 });
 
 const MenuItem = styled.div({
@@ -84,11 +95,11 @@ const MenuItem = styled.div({
   justifyContent: 'center',
   marginRight: 20,
   padding: '0 20px',
-  height: '100%'
+  height: '100%',
 });
 
 const MenuLink = styled.span({
-  color: Colors.white
+  color: Colors.white,
 });
 
 export default Layout;

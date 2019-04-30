@@ -3,5 +3,6 @@ export const Colors = {
   paleGray: '#efefef',
   gray: '#787878',
   turquoiseBlue: '#40E0D0',
-  darkTurquoiseBlue: '#00CED1'
-}
+  darkTurquoiseBlue: '#00CED1',
+  crimson: '#DC143C\t',
+};
