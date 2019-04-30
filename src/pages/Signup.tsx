@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import isEmpty from 'lodash.isempty';
 import { Form as FormikForm, Field, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 import { Colors } from '../constants/styles';
 
 // ===
@@ -25,7 +26,7 @@ interface Values {
 const SignUp: React.FC<Props> = ({ errors, touched, validateForm }) => {
   React.useEffect(() => {
     validateForm();
-  }, []);
+  }, [validateForm]);
   const isSubmitable = !isEmpty(errors);
   return (
     <Layout>
@@ -44,23 +45,33 @@ const SignUp: React.FC<Props> = ({ errors, touched, validateForm }) => {
               <ErrorMessage>{errors.email}</ErrorMessage>
             )}
             <FormLabel>Email</FormLabel>
-            <FormField name="email" />
+            <FormField name="email" autoComplete="username" />
           </FormItem>
           <FormItem>
             {touched.password && errors.password && (
               <ErrorMessage>{errors.password}</ErrorMessage>
             )}
             <FormLabel>Password</FormLabel>
-            <FormField name="password" type="password" />
+            <FormField
+              name="password"
+              type="password"
+              autoComplete="new-password"
+            />
           </FormItem>
           <FormItem>
             {touched.confirmation && errors.confirmation && (
               <ErrorMessage>{errors.confirmation}</ErrorMessage>
             )}
             <FormLabel>Confirmation</FormLabel>
-            <FormField name="confirmation" type="password" />
+            <FormField
+              name="confirmation"
+              type="password"
+              autoComplete="new-password"
+            />
           </FormItem>
-          <Submit disabled={isSubmitable}>Sign Up!</Submit>
+          <Submit disabled={isSubmitable} type="submit">
+            Sign Up!
+          </Submit>
         </Form>
       </Container>
     </Layout>
@@ -125,7 +136,19 @@ const Submit = styled.button<{ disabled: boolean }>(({ disabled }) => ({
 
 export default () => {
   const onSubmit = (values: Values) => {
-    alert(values);
+    axios
+      .post('http://localhost:3000/api/v1/users', {
+        user: {
+          name: values.name,
+          email: values.email,
+          password: values.password,
+          password_confirmation: values.confirmation,
+        },
+      })
+      .then(response => alert(JSON.stringify(response)))
+      .catch(error => {
+        alert(JSON.stringify(error));
+      });
   };
 
   const initialValues: Values = {
