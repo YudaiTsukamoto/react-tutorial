@@ -16,21 +16,9 @@ const Layout: React.FC = props => (
         <Logo>React Tutorial</Logo>
       </Link>
       <Menu>
-        <MenuItem>
-          <Link to="/">
-            <MenuLink>Home</MenuLink>
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <Link to="/help">
-            <MenuLink>Help</MenuLink>
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <Link to="/signup">
-            <MenuLink>Signup</MenuLink>
-          </Link>
-        </MenuItem>
+        <MenuLink to="/">Home</MenuLink>
+        <MenuLink to="/help">Help</MenuLink>
+        <MenuLink to="/signup">Signup</MenuLink>
       </Menu>
     </Header>
     <Content>{props.children}</Content>
@@ -86,20 +74,18 @@ const Menu = styled.div({
   display: 'flex',
 });
 
-const MenuItem = styled.div({
+const MenuLink = styled(Link)({
   '&:hover': {
     background: Colors.darkTurquoiseBlue,
   },
   alignItems: 'center',
   display: 'flex',
+  color: Colors.white,
+  flex: 1,
   justifyContent: 'center',
   marginRight: 20,
   padding: '0 20px',
   height: '100%',
-});
-
-const MenuLink = styled.span({
-  color: Colors.white,
 });
 
 export default Layout;
