@@ -72,7 +72,20 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "eslint:recommended",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "trailingComma": "es5"
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -136,5 +149,10 @@
       "react-app",
       "@emotion/babel-preset-css-prop"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "1.17.0"
   }
 }
