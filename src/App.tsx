@@ -1,8 +1,8 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Help from './pages/Help';
-import NotFound from './pages/NotFound'
+import NotFound from './pages/NotFound';
 import './App.css';
 
 const App: React.FC = () => {
@@ -15,6 +15,6 @@ const App: React.FC = () => {
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
