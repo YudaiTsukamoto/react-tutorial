@@ -1,7 +1,13 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import styled from '@emotion/styled';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { User } from '../models/User';
+import Layout from '../components/Layout';
 import { plainToClass } from 'class-transformer';
+import Avatar from '../components/Avatar';
+import { Colors } from '../constants/styles';
 
 // ===
 // @interface
@@ -13,17 +19,52 @@ interface Props {
 // ===
 // @view
 const UserView: React.FC<Props> = ({ user }) => {
-  console.log(user);
   return (
-    <div>
-      {user.hasPicture() && <img src={user.pictureUrl} alt={user.name} />}
-      {user.id} : {user.name}
-    </div>
+    <Layout>
+      <Container>
+        <SideContainer>
+          {user.hasPicture() && (
+            <AvatarIcon src={user.pictureUrl!} alt={user.name} />
+          )}
+          <UserName>{user.name}</UserName>
+        </SideContainer>
+        <MainContainer>ここにメインのコンテンツがはいる</MainContainer>
+      </Container>
+    </Layout>
   );
 };
 
 // ===
 // @styled
+
+const Container = styled.div({
+  display: 'flex',
+  padding: '30px 0',
+});
+
+const SideContainer = styled.div({
+  alignItems: 'center',
+  background: Colors.paleGray,
+  borderRadius: 4,
+  display: 'flex',
+  flexDirection: 'column',
+  marginRight: 30,
+  padding: '30px 0',
+  width: '30%',
+});
+
+const AvatarIcon = styled(Avatar)({
+  marginBottom: 15,
+  width: '40%',
+});
+
+const UserName = styled.div({
+  color: Colors.gray,
+  fontSize: 18,
+  fontWeight: 700,
+});
+
+const MainContainer = styled.div({});
 
 // ===
 // @container
