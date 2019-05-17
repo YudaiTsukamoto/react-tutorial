@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import './App.css';
 import SignUp from './pages/Signup';
 import UserPage from './pages/User';
+import 'reflect-metadata';
 
 const App: React.FC = () => {
   return (
