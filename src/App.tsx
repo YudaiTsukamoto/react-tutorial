@@ -5,6 +5,7 @@ import Help from './pages/Help';
 import NotFound from './pages/NotFound';
 import './App.css';
 import SignUp from './pages/Signup';
+import UserPage from './pages/User';
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Route exact path="/" component={Home} />
         <Route path="/help" component={Help} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/users/:id" component={UserPage} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
