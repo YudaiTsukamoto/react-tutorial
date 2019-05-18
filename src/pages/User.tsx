@@ -3,11 +3,12 @@ import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
+import { connect } from 'react-redux';
 import { User } from '../models/User';
 import Layout from '../components/Layout';
-import { plainToClass } from 'class-transformer';
 import Avatar from '../components/Avatar';
 import { Colors } from '../constants/styles';
+import { operations, selectors } from '../modules/users';
 
 // ===
 // @interface
@@ -66,24 +67,48 @@ const UserName = styled.div({
 
 const MainContainer = styled.div({});
 
+type ContainerProps = {
+  user?: User;
+  fetchUser: (id: string) => void;
+} & RouteComponentProps<{ id: string }>;
+
 // ===
 // @container
-const UserContainer: React.FC<RouteComponentProps<{ id: string }>> = ({
+const UserContainer: React.FC<ContainerProps> = ({
+  user,
   match,
+  fetchUser,
 }) => {
   const { id } = match.params;
-  return (
-    <UserView
-      user={plainToClass(User, {
-        id,
-        name: 'hoge',
-        pictureUrl:
-          'https://cdn-natgeo.nikkeibp.co.jp/atcl/news/16/060200197/ph_thumb.jpg?__scale=w:500,h:468&_sh=0ca02504a0',
-      })}
-    />
-  );
+
+  React.useEffect(() => {
+    fetchUser(id);
+  }, [id]);
+
+  if (!user) {
+    return <Layout>Loading...</Layout>;
+  }
+
+  return <UserView user={user} />;
 };
+
+const mapStateToProps = (
+  state: { users: User[] },
+  ownProps: RouteComponentProps<{ id: string }>
+) => {
+  const users = state.users;
+  const id = ownProps.match.params.id;
+  const user = selectors.findUser(users, id);
+  return { user };
+};
+
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchUser: (id: string) => dispatch(operations.fetchUser(id)),
+});
 
 // ===
 // @export
-export default UserContainer;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserContainer);

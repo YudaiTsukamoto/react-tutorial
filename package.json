@@ -65,6 +65,7 @@
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "reflect-metadata": "^0.1.13",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
