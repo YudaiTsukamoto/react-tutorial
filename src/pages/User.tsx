@@ -9,6 +9,8 @@ import Layout from '../components/Layout';
 import Avatar from '../components/Avatar';
 import { Colors } from '../constants/styles';
 import { operations, selectors } from '../modules/users';
+import { AppState } from '../modules/store';
+import { isLoading } from '../modules/isLoading';
 
 // ===
 // @interface
@@ -69,6 +71,7 @@ const MainContainer = styled.div({});
 
 type ContainerProps = {
   user?: User;
+  isLoading: boolean;
   fetchUser: (id: string) => void;
 } & RouteComponentProps<{ id: string }>;
 
@@ -76,6 +79,7 @@ type ContainerProps = {
 // @container
 const UserContainer: React.FC<ContainerProps> = ({
   user,
+  isLoading,
   match,
   fetchUser,
 }) => {
@@ -85,21 +89,25 @@ const UserContainer: React.FC<ContainerProps> = ({
     fetchUser(id);
   }, [id]);
 
-  if (!user) {
+  if (isLoading) {
     return <Layout>Loading...</Layout>;
+  }
+
+  if (!user) {
+    return <Layout>User NotFound</Layout>;
   }
 
   return <UserView user={user} />;
 };
 
 const mapStateToProps = (
-  state: { users: User[] },
+  state: AppState,
   ownProps: RouteComponentProps<{ id: string }>
 ) => {
-  const users = state.users;
+  const { users, isLoading } = state;
   const id = ownProps.match.params.id;
   const user = selectors.findUser(users, id);
-  return { user };
+  return { user, isLoading };
 };
 
 const mapDispatchToProps = (dispatch: any) => ({

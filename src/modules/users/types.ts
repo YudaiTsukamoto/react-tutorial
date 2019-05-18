@@ -5,15 +5,25 @@ export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const FETCH_USER_FAIL = 'FETCH_USER_FAIL';
 export type State = User[];
 
-type FetchUserStartAction = {
+export type FetchUserStartAction = {
   type: typeof FETCH_USER_START;
 };
 
-type FetchUserSuccessAction = {
+export type FetchUserSuccessAction = {
   type: typeof FETCH_USER_SUCCESS;
   payload: {
     user: User;
   };
 };
 
-export type UserActionTypes = FetchUserStartAction | FetchUserSuccessAction;
+export type FetchUserFailAction = {
+  type: typeof FETCH_USER_FAIL;
+  payload: {
+    error: string;
+  };
+};
+
+export type UserActionTypes =
+  | FetchUserStartAction
+  | FetchUserSuccessAction
+  | FetchUserFailAction;
