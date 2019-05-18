@@ -14,6 +14,7 @@
     "@types/node": "11.13.8",
     "@types/react": "16.8.15",
     "@types/react-dom": "16.8.4",
+    "@types/react-redux": "^7.0.8",
     "@types/react-router-dom": "^4.3.2",
     "@types/yup": "^0.26.12",
     "@typescript-eslint/eslint-plugin": "1.6.0",
@@ -25,6 +26,7 @@
     "babel-plugin-named-asset-import": "^0.3.2",
     "babel-preset-react-app": "^8.0.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "class-transformer": "^0.2.2",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
@@ -60,7 +62,11 @@
     "react-app-polyfill": "^1.0.0",
     "react-dev-utils": "^9.0.0",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "reflect-metadata": "^0.1.13",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
@@ -90,6 +96,7 @@
       "prettier"
     ],
     "rules": {
+      "no-console": 0,
       "prettier/prettier": [
         "error",
         {
