@@ -10,7 +10,6 @@ import Avatar from '../components/Avatar';
 import { Colors } from '../constants/styles';
 import { operations, selectors } from '../modules/users';
 import { AppState } from '../modules/store';
-import { isLoading } from '../modules/isLoading';
 
 // ===
 // @interface
